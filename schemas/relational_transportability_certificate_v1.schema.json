@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/mczajkowskipb/transferable-relational-patient-profiles/main/schemas/relational_transportability_certificate_v1.schema.json",
+  "title": "RelationalTransportabilityCertificate/v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_dataset",
+    "artifact_sha256",
+    "calibration_policy",
+    "profiles"
+  ],
+  "properties": {
+    "schema": {
+      "const": "RelationalTransportabilityCertificate/v1"
+    },
+    "source_dataset": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "calibration_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/profile_certificate"
+      }
+    }
+  },
+  "$defs": {
+    "profile_certificate": {
+      "type": "object",
+      "required": [
+        "profile_id",
+        "perturbation_class",
+        "coverage_q",
+        "confidence",
+        "calibration_n",
+        "transportability_radius",
+        "order_rank",
+        "assumptions",
+        "status"
+      ],
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "perturbation_class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coverage_q": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "confidence": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "calibration_n": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "transportability_radius": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "order_rank": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "CERTIFIED",
+            "NOT_CERTIFIABLE"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

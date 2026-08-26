@@ -1,0 +1,31 @@
+{
+  "schema": "RelationalPatientProfileArtifact/v1",
+  "artifact_id": "DEMO-RPP-001",
+  "source_dataset": "SYNTHETIC_DEMO",
+  "feature_namespace": "gene_symbol_demo",
+  "mapping_hash": "demo-mapping-hash",
+  "preprocessing_hash": "demo-preprocessing-hash",
+  "config_hash": "demo-config-hash",
+  "software_commit": "DEMO",
+  "min_score": 0.75,
+  "min_margin": 0.25,
+  "min_executable_coverage": 0.75,
+  "created_prelabel": true,
+  "prototypes": [
+    {
+      "profile_id": "P0",
+      "relations": [
+        {"feature_a": "A", "feature_b": "B", "direction": ">", "weight": 1.0},
+        {"feature_a": "C", "feature_b": "D", "direction": ">", "weight": 1.0}
+      ]
+    },
+    {
+      "profile_id": "P1",
+      "relations": [
+        {"feature_a": "A", "feature_b": "B", "direction": "<", "weight": 1.0},
+        {"feature_a": "C", "feature_b": "D", "direction": "<", "weight": 1.0}
+      ]
+    }
+  ],
+  "transportability_certificate": null
+}
