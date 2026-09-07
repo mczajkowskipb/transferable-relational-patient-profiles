@@ -1,0 +1,17 @@
+dataset,population,profile_id,evaluation_label,count
+GSE27262,accepted,P0,adjacent_normal,0
+GSE27262,accepted,P0,tumor,24
+GSE27262,accepted,P1,adjacent_normal,25
+GSE27262,accepted,P1,tumor,1
+GSE27262,forced,P0,adjacent_normal,0
+GSE27262,forced,P0,tumor,24
+GSE27262,forced,P1,adjacent_normal,25
+GSE27262,forced,P1,tumor,1
+GSE32863,accepted,P0,adjacent_normal,0
+GSE32863,accepted,P0,tumor,28
+GSE32863,accepted,P1,adjacent_normal,53
+GSE32863,accepted,P1,tumor,13
+GSE32863,forced,P0,adjacent_normal,0
+GSE32863,forced,P0,tumor,40
+GSE32863,forced,P1,adjacent_normal,58
+GSE32863,forced,P1,tumor,18

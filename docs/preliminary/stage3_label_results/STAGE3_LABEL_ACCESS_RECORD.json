@@ -1,0 +1,9 @@
+{
+  "schema": "Stage3LabelAccessRecord/v1",
+  "opened_at_utc": "2026-09-07T20:39:30.046426+00:00",
+  "stage3_zip": "F:\\2026\\Sonata\\chat\\v17\\e\\LUNG_PRELIMINARY_INPUTS_PREP_2026-09-07\\POST_ASSIGNMENT_LABELS_2026-09-07.zip",
+  "stage3_sha256": "72fff8d5fe2c1785018915bf1c567d58b20184d71d5122e2fdebb001d344d30a",
+  "implementation_commit": "5b5543664988f20c1389a652521141dd2b2e7234",
+  "prelabel_commit": "f633d7cc4ae3c26e794798f3e4ec3194ad7e8aa0",
+  "labels_may_change_prelabel_decisions": false
+}

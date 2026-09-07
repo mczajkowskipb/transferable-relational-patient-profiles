@@ -1,0 +1,52 @@
+{
+  "schema": "Stage3LabelStatus/v1",
+  "status": "STAGE3_LABEL_EVALUATION_COMPLETE",
+  "labels_opened": true,
+  "implementation_commit": "5b5543664988f20c1389a652521141dd2b2e7234",
+  "prelabel_commit": "f633d7cc4ae3c26e794798f3e4ec3194ad7e8aa0",
+  "prelabel_decisions_modified": false,
+  "targets": [
+    {
+      "dataset": "GSE27262",
+      "total_n": 50,
+      "label_classes": "[\"adjacent_normal\", \"tumor\"]",
+      "accepted_n": 50,
+      "accepted_fraction": 1.0,
+      "accepted_ari": 0.9199693343555215,
+      "accepted_nmi": 0.8782063702756281,
+      "accepted_mapping": "{\"P0\": \"tumor\", \"P1\": \"adjacent_normal\"}",
+      "accepted_mapped_accuracy": 0.98,
+      "accepted_mapped_balanced_accuracy": 0.98,
+      "forced_n": 50,
+      "forced_fraction": 1.0,
+      "forced_ari": 0.9199693343555215,
+      "forced_nmi": 0.8782063702756281,
+      "forced_mapping": "{\"P0\": \"tumor\", \"P1\": \"adjacent_normal\"}",
+      "forced_mapped_accuracy": 0.98,
+      "forced_mapped_balanced_accuracy": 0.98,
+      "label_file_sample_column": "gsm",
+      "label_file_label_column": "evaluation_label"
+    },
+    {
+      "dataset": "GSE32863",
+      "total_n": 116,
+      "label_classes": "[\"adjacent_normal\", \"tumor\"]",
+      "accepted_n": 94,
+      "accepted_fraction": 0.8103448275862069,
+      "accepted_ari": 0.5177621224965512,
+      "accepted_nmi": 0.5202361014832134,
+      "accepted_mapping": "{\"P0\": \"tumor\", \"P1\": \"adjacent_normal\"}",
+      "accepted_mapped_accuracy": 0.8617021276595744,
+      "accepted_mapped_balanced_accuracy": 0.8414634146341464,
+      "forced_n": 116,
+      "forced_fraction": 1.0,
+      "forced_ari": 0.4714710020322026,
+      "forced_nmi": 0.5002458517202212,
+      "forced_mapping": "{\"P0\": \"tumor\", \"P1\": \"adjacent_normal\"}",
+      "forced_mapped_accuracy": 0.8448275862068966,
+      "forced_mapped_balanced_accuracy": 0.8448275862068966,
+      "label_file_sample_column": "gsm",
+      "label_file_label_column": "evaluation_label"
+    }
+  ]
+}
