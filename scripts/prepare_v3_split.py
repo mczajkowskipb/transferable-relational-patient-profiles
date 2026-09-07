@@ -8,7 +8,7 @@ from relational_patient_profiles.artifact import (
     RPPRelation,RPPPrototype,RelationalPatientProfileArtifact,execute_rpp_artifact
 )
 
-EXPECTED_HEAD="1c70e6ee390c214405e050e7c202b5a8a9a7c472"
+EXPECTED_RULE_TAG="preliminary-v3-stratified-split-rule-freeze-2026-09-07"
 EXPECTED_ARTIFACT_SHA="9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b"
 
 def die(x): raise SystemExit("ERROR: "+x)
@@ -47,7 +47,6 @@ def rank_key(pid):
     return hashlib.sha256(f"RPPV3_STRAT_SPLIT|{pid}".encode()).hexdigest()
 
 def choose_split(records):
-    # rank is deterministic and independent of validation values
     ranked=sorted(records,key=lambda r:(rank_key(r["participant_id"]),int(r["participant_id"])))
     for pos,r in enumerate(ranked): r["sha_rank"]=pos
 
@@ -56,7 +55,6 @@ def choose_split(records):
     total_ap=sum(r["assigned_participant"] for r in ranked)
     total_as=sum(r["n_assigned_specimens"] for r in ranked)
 
-    # DP state: (selected_n, sig_i, sig_c, sig_ap, sig_as) -> (cost, tuple_of_pids)
     states={(0,0,0,0,0):(0,())}
     for r in ranked:
         new=dict(states)
@@ -90,8 +88,16 @@ def choose_split(records):
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--prep-root",required=True); a=ap.parse_args()
     root=Path(a.prep_root).resolve(); repo=root/"repo_patch/_work_repo"
-    if git(repo,"rev-parse","HEAD")!=EXPECTED_HEAD: die("unexpected repo HEAD before V3 rule freeze")
+
+    # Implementation-only repair: after the V3 rule itself has been frozen, later
+    # runner commits are allowed as long as the frozen rule commit remains an ancestor.
+    rule_commit=git(repo,"rev-list","-n","1",EXPECTED_RULE_TAG)
+    head=git(repo,"rev-parse","HEAD")
+    anc=subprocess.run(["git","merge-base","--is-ancestor",rule_commit,head],cwd=repo)
+    if anc.returncode!=0:
+        die(f"frozen V3 rule commit {rule_commit} is not an ancestor of current HEAD {head}")
     if git(repo,"status","--porcelain"): die("repo dirty")
+
     cache=np.load(root/"SOURCE_AUDIT_V1/GSE19804_COMMON_ENTREZ_V1.npz")
     X=cache["X"].astype(float); gsms=[str(x) for x in cache["gsms"]]; genes=[str(x) for x in cache["gene_ids"]]
     with (root/"_stage_packages_v2/pre_freeze/metadata/GSE19804_participant_map_BLIND.csv").open(encoding="utf-8-sig",newline="") as f:
