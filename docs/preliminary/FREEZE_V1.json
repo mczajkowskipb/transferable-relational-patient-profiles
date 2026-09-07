@@ -1,0 +1,20 @@
+﻿{
+    "schema":  "StructuralRetentionProtocolFreeze/v1",
+    "frozen_at_local":  "2026-09-07T20:47:33.8096885+02:00",
+    "frozen_at_utc":  "2026-09-07T18:47:33.8126883Z",
+    "branch":  "preliminary-structural-retention-v1",
+    "prefreeze_parent_commit":  "9b090b62d0d7024c86344e7d031b6fd5cc840e98",
+    "historical_freeze_modified":  false,
+    "colorectal_opened":  false,
+    "target_values_opened":  false,
+    "target_labels_opened":  false,
+    "lung_role_from_this_freeze":  "development-exposed preliminary/technical-anchor",
+    "colorectal_role":  "future principal confirmatory family; sealed",
+    "protocol_sha256":  "e2372096460971bf84088ec3add88f7a4de2f300620378d739b855b7160921c8",
+    "config_sha256":  "3a3d3b8065efae8b4e6a5f3c606c9e94a9ba1f0bf467e88edb2123ef718ad02b",
+    "source_split_sha256":  "b4df2ab36ceee889d2f744bb327e42e1e8c1977c21abd9959af10cf292190f82",
+    "stage1_manifest_sha256":  "7ba103c2b15bf3e3b79b7ee6b3364324301b3de1220af3f244293e51e309e6ff",
+    "sealed_payload_manifest_sha256":  "8b43e75abb25c7090d896d3968118aadf9154b68e9e9c079203cf96c010265aa",
+    "preflight_verifier":  "19/19 passed",
+    "pytest":  "19 passed"
+}

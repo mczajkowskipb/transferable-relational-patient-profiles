@@ -1,26 +1,33 @@
-{
-  "schema": "StructuralRetentionPreflightStatus/v1",
-  "date": "2026-09-07",
-  "status": "PREFLIGHT_COMPLETE_REAL_DATA_BLOCKED",
-  "upstream_commit": "1c9f9acdb680f5fc63bc6460b347f941011dacab",
-  "logic": ["LEARN", "TRUST", "TRANSFER", "MAP_THE_LIMITS"],
-  "primary_external_endpoint": "independent structural retention",
-  "secondary_context": ["ARI", "NMI"],
-  "lung_intended_role": "development-exposed preliminary anchor after actual protocol commit",
-  "colorectal_role": "future principal confirmatory family; sealed",
-  "protocol_frozen": false,
-  "source_matrix_loaded": false,
-  "lung_target_data_opened": false,
-  "colorectal_data_opened": false,
-  "target_reclassification_executed": false,
-  "real_data_pilot_run": false,
-  "remote_branch_created": false,
-  "draft_pr_created": false,
-  "delivery": "patch against inspected upstream commit",
-  "historical_freeze_modified": false,
-  "historical_evidence_modified": false,
-  "preflight_tests_passed": 19,
-  "preflight_test_runner": "unittest plus existing fixture-free functions, not pytest",
-  "blockers": ["data download unavailable", "GitHub write integration returned 403"],
-  "empirical_evidence_rating_after": null
+﻿{
+    "schema":  "StructuralRetentionPreflightStatus/v1",
+    "date":  "2026-09-07",
+    "status":  "V1_PROTOCOL_FROZEN_TARGET_VALUES_STILL_SEALED",
+    "logic":  [
+                  "LEARN",
+                  "TRUST",
+                  "TRANSFER",
+                  "MAP_THE_LIMITS"
+              ],
+    "primary_external_endpoint":  "independent structural retention",
+    "secondary_context":  [
+                              "ARI",
+                              "NMI"
+                          ],
+    "protocol_frozen":  true,
+    "source_input_available":  true,
+    "lung_target_values_opened":  false,
+    "lung_target_labels_opened":  false,
+    "colorectal_data_opened":  false,
+    "target_reclassification_executed":  true,
+    "real_data_pilot_run":  false,
+    "remote_branch_created":  true,
+    "historical_freeze_modified":  false,
+    "historical_evidence_modified":  false,
+    "preflight_tests_passed":  19,
+    "pytest_tests_passed":  19,
+    "blockers":  [
+
+                 ],
+    "next_allowed_stage":  "SOURCE_FIT_THEN_STAGE2_TARGET_VALUES_AFTER_FULL_ARTIFACT_AND_SIGNATURE_FREEZE",
+    "empirical_evidence_rating_after":  null
 }

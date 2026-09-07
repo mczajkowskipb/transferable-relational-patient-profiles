@@ -1,0 +1,151 @@
+{
+  "schema": "StructuralRetentionPilotConfig/v1",
+  "date": "2026-09-07",
+  "preflight_parent_commit": "9b090b62d0d7024c86344e7d031b6fd5cc840e98",
+  "source": "GSE19804",
+  "targets": [
+    "GSE27262",
+    "GSE32863"
+  ],
+  "confirmatory_family_excluded": [
+    "GSE39582",
+    "GSE14333",
+    "GSE33113"
+  ],
+  "feature_namespace": {
+    "primary": "Entrez Gene ID",
+    "annotation_rule": "retain only probes with exactly one numeric Gene ID",
+    "multi_probe_aggregation": "within-sample median",
+    "common_universe": "intersection of eligible Gene IDs on GPL570 and GPL6884 annotations",
+    "discovery_validation_partition": "SHA256('RPPV1_POOL|<gene_id>'), first byte parity: even DISCOVERY, odd VALIDATION"
+  },
+  "source_split": {
+    "method": "sort participant IDs by SHA256('20260907|<participant_id>')",
+    "assignment_n_participants": 30,
+    "signature_n_participants": 12,
+    "reference_n_participants": 18
+  },
+  "assignment": {
+    "candidate_k": [
+      2,
+      3
+    ],
+    "feature_budget": 60,
+    "all_pairs_among_selected_features": true,
+    "max_rules_per_profile": 10,
+    "min_rule_support": 0.8,
+    "min_rule_contrast": 0.1,
+    "max_iter": 50,
+    "allow_primary_fallback": false,
+    "artifact_min_score": 0.6,
+    "artifact_min_margin": 0.05,
+    "artifact_min_executable_coverage": 0.8,
+    "min_profile_participant_support": 8,
+    "k_stability_subsamples": 20,
+    "k_stability_subsample_fraction": 0.8,
+    "k_min_mean_stability_ari": 0.6,
+    "source_structure_null_replicates": 199,
+    "source_structure_null_quantile": 0.95,
+    "k_selection_tie_order": [
+      "largest_observed_minus_null95",
+      "largest_stability",
+      "smaller_K"
+    ]
+  },
+  "signature": {
+    "validation_feature_budget": 60,
+    "max_relations": 10,
+    "min_relations": 5,
+    "max_feature_reuse": 2,
+    "min_index_support": 0.7,
+    "min_observed_contrast": 0.2,
+    "bootstrap_replicates": 500,
+    "min_positive_bootstrap_fraction": 0.8,
+    "min_group_participants_signature": 6
+  },
+  "source_reference": {
+    "bootstrap_replicates": 2000,
+    "min_group_participants": 8,
+    "min_specimen_assignment_coverage": 0.7,
+    "min_participant_assignment_coverage": 0.7,
+    "source_contrast_floor": 0.15,
+    "source_one_sided_alpha": 0.05
+  },
+  "retention": {
+    "rho": 0.5,
+    "target_absolute_contrast_floor": 0.1,
+    "one_sided_alpha": 0.05,
+    "min_group_participants": 8,
+    "min_specimen_assignment_coverage": 0.7,
+    "min_participant_assignment_coverage": 0.7,
+    "min_validation_evaluability": 0.9,
+    "outcomes": [
+      "PASS",
+      "FAIL",
+      "INSUFFICIENT_SUPPORT"
+    ]
+  },
+  "mechanistic_B": {
+    "dose_t": [
+      0,
+      0.25,
+      0.5,
+      1,
+      2
+    ],
+    "transform": "x'_ij = exp(t*z_i)*x_ij + t*s_source*u_i",
+    "rng": "NumPy PCG64",
+    "seed": 20260916,
+    "required_numeric_relation_flip_rate": 0.0
+  },
+  "mechanistic_C": {
+    "dose_fraction": [
+      0,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "replicates_per_nonzero_dose": 20,
+    "seed": 20260917,
+    "nested_gene_selection": "SHA256('C_DAMAGE|<gene_id>')",
+    "assignment_must_be_byte_identical": true
+  },
+  "mechanistic_D": {
+    "dose_fraction": [
+      0,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "nested_core_gene_selection": "SHA256('D_DROPOUT|<gene_id>')",
+    "full_core_loss_must_unassign_all": true
+  },
+  "conditional_false_reassurance": {
+    "replicates_per_target": 999,
+    "seed": 20260918,
+    "acceptable_upper_95_binomial_bound": 0.1
+  },
+  "source_full_pipeline_null": {
+    "replicates": 99,
+    "seed": 20260912,
+    "role": "diagnostic; cannot rescue target result"
+  },
+  "bootstrap_seeds": {
+    "signature": 20260913,
+    "source_reference": 20260914,
+    "target": 20260915
+  },
+  "baselines": {
+    "primary_explanatory": [
+      "frozen_value_centroid",
+      "frozen_rank_centroid"
+    ],
+    "training_labels": "source-only frozen RR_DIRECT pseudo-labels",
+    "no_target_tuning": true,
+    "cannot_rescue_primary": true
+  }
+}
