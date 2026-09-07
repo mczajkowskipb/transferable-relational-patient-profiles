@@ -1,0 +1,33 @@
+{
+  "schema": "PublicReplayVerification/v1",
+  "date": "2026-09-07",
+  "source_commit": "cb87d0dc0edd4288f56960e58e18bb008571ddb7",
+  "public_replay_all_checks_passed": true,
+  "common_entrez_universe": 17062,
+  "C_source": 0.6053475935828878,
+  "source_lower95": 0.4207264957264959,
+  "python": "3.11.9",
+  "raw_geo_matrices_committed": false,
+  "colorectal_opened": false,
+  "source_data": "NCBI GEO public Series Matrix files",
+  "targets": {
+    "GSE27262": {
+      "decision": true,
+      "C_target": true,
+      "R": true,
+      "accepted_ari": true,
+      "accepted_nmi": true,
+      "forced_ari": true,
+      "forced_nmi": true
+    },
+    "GSE32863": {
+      "decision": true,
+      "C_target": true,
+      "R": true,
+      "accepted_ari": true,
+      "accepted_nmi": true,
+      "forced_ari": true,
+      "forced_nmi": true
+    }
+  }
+}

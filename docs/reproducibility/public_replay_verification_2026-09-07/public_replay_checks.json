@@ -1,0 +1,26 @@
+{
+  "common_genes": 17062,
+  "C_source": 0.6053475935828878,
+  "source_lower95": 0.4207264957264959,
+  "targets": {
+    "GSE27262": {
+      "decision": true,
+      "C_target": true,
+      "R": true,
+      "accepted_ari": true,
+      "accepted_nmi": true,
+      "forced_ari": true,
+      "forced_nmi": true
+    },
+    "GSE32863": {
+      "decision": true,
+      "C_target": true,
+      "R": true,
+      "accepted_ari": true,
+      "accepted_nmi": true,
+      "forced_ari": true,
+      "forced_nmi": true
+    }
+  },
+  "all_checks_passed": true
+}
