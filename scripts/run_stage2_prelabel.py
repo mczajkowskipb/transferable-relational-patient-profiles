@@ -11,7 +11,7 @@ from relational_patient_profiles.artifact import (
     RPPRelation,RPPPrototype,RelationalPatientProfileArtifact,execute_rpp_artifact
 )
 
-EXPECTED_IMPL_TAG="preliminary-stage2-runner-repair-2026-09-07"
+EXPECTED_IMPL_TAG="preliminary-stage2-partial-recovery-2026-09-07"
 EXPECTED_STAGE2_SHA="94e648dfa9ec9b9cd16a6eaea067f1d823e7d74eb128cc27cfc6de473081e2df"
 EXPECTED_ARTIFACT_SHA="9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b"
 EXPECTED_SIGNATURE_SHA="64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d"
@@ -366,7 +366,7 @@ def main():
                 "original_access_record":"STAGE2_ACCESS_RECORD.json",
                 "stage2_sha256":EXPECTED_STAGE2_SHA,
                 "repair_commit":head,
-                "reason":"opaque alphanumeric participant identifiers caused int() coercion failure before target endpoint computation",
+                "reason":"resume after archived partial Stage-2 outputs and opaque-ID runner repair; scientific artifact/signature/thresholds unchanged",
                 "stage3_labels_opened":False,"colorectal_opened":False}
         (results/"STAGE2_RESUME_RECORD.json").write_text(json.dumps(resume,indent=2)+"\n")
     else:
