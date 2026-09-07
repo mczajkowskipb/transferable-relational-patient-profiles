@@ -1,0 +1,59 @@
+{
+  "schema": "SourceExecutionImplementationV1",
+  "date": "2026-09-07",
+  "protocol_freeze_commit": "8eb98b22555816dc2771582797e73f068cff062d",
+  "protocol_freeze_tag": "preliminary-v1-protocol-freeze-2026-09-07",
+  "purpose": "Resolve deterministic implementation details left operationally unspecified by the frozen V1 protocol, before generating source-fit results and before any target-value access.",
+  "stability_subsamples": {
+    "replicates": 20,
+    "rule": "For replicate r=0..19, sort ASSIGNMENT_LEARNING participant IDs by SHA256('RPPV1_STABILITY|r|<participant_id>') and take the first 24.",
+    "failed_fit_contribution_to_mean_ari": 0.0
+  },
+  "assignment_null": {
+    "replicates_per_k": 199,
+    "rng": "NumPy PCG64",
+    "seed": 20260911,
+    "gene_substreams": "SeedSequence([20260911, k, replicate, numeric_gene_id])",
+    "block_rule": "For each selected discovery gene independently, permute 30 participant blocks and independently swap the two within-participant specimen positions with probability 0.5.",
+    "optimization": "Only the frozen top-60 discovery genes are permuted because block permutation preserves every gene's univariate values and therefore preserves the MAD ranking exactly.",
+    "failed_null_fit_q": 0.0,
+    "null_quantile": "NumPy quantile(method='higher') at q=0.95"
+  },
+  "strict_rr_direct": {
+    "base_semantics": "Same repaired RR_DIRECT induction/scoring semantics as repository rr_direct.py, including strict A>B/A<B tie handling and global-prevalence contrast.",
+    "primary_fallback": "disabled: if a profile has no relation meeting frozen support/contrast thresholds, that fit fails",
+    "pair_budget": "all 1770 pairs among 60 selected genes"
+  },
+  "stability_ari": {
+    "population": "all ASSIGNMENT_LEARNING specimens",
+    "assignment": "forced argmax prototype score without min_score/min_margin abstention",
+    "implementation": "exact adjusted Rand index from contingency counts; no sklearn dependency"
+  },
+  "signature_bootstrap": {
+    "rng": "NumPy PCG64",
+    "seed": 20260913,
+    "unit": "participant",
+    "degenerate_draw_contrast": 0.0,
+    "ranking_median": "median across all 500 draws including degenerate draws set to 0"
+  },
+  "source_reference_bootstrap": {
+    "rng": "NumPy PCG64",
+    "seed": 20260914,
+    "unit": "participant",
+    "degenerate_draw_contrast": 0.0,
+    "one_sided_lower_bound": "5th percentile using NumPy quantile(method='lower') across all 2000 draws"
+  },
+  "participant_group_aggregation": "Within each participant and frozen group, average eligible specimen validation scores; then average participant-level values with equal participant weight.",
+  "index_profile_tie_break": "lexical profile_id after mean(support*max(contrast,0))",
+  "artifact_provenance": {
+    "mapping_hash": "SHA256 of COMMON_ENTREZ_UNIVERSE_V1.csv",
+    "preprocessing_hash": "SHA256 of canonical mapped source matrix bytes plus sorted GSM and gene identifiers",
+    "config_hash": "SHA256 of committed V1_CONFIG.json",
+    "software_commit": "source-implementation commit created before execution"
+  },
+  "firewall": {
+    "stage2_target_values": "must remain unopened",
+    "stage3_evaluation_labels": "must remain unopened",
+    "colorectal": "must remain unopened"
+  }
+}
