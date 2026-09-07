@@ -1,0 +1,26 @@
+{
+  "schema": "V3AssignmentStratifiedSourceConfig/v1",
+  "date": "2026-09-07",
+  "v2_outcome_commit": "1c70e6ee390c214405e050e7c202b5a8a9a7c472",
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+  "index_profile": "P0",
+  "signature_n": 12,
+  "reference_n": 18,
+  "signature_min_index_contributors": 6,
+  "signature_min_comparator_contributors": 6,
+  "reference_min_index_contributors": 8,
+  "reference_min_comparator_contributors": 8,
+  "reference_min_assigned_participants": 13,
+  "reference_min_assigned_specimens": 26,
+  "split_hash_prefix": "RPPV3_STRAT_SPLIT|",
+  "split_objective": [
+    "minimum_sum_zero_based_sha_rank",
+    "lexicographically_smallest_selected_participant_tuple"
+  ],
+  "signature_bootstrap_seed": 20260913,
+  "source_reference_bootstrap_seed": 20260914,
+  "inherit_signature_and_reference_thresholds_from": "V1_CONFIG.json",
+  "stage2_target_values_must_remain_sealed": true,
+  "stage3_labels_must_remain_sealed": true,
+  "colorectal_must_remain_sealed": true
+}
