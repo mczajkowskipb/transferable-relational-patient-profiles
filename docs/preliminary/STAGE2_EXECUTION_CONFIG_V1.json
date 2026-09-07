@@ -1,0 +1,60 @@
+{
+  "schema": "Stage2PrelabelImplementationConfig/v1",
+  "date": "2026-09-07",
+  "required_source_commit": "6820763d00d879a24acfda0141adb48384680d6d",
+  "required_source_tag": "preliminary-v3-source-package-freeze-2026-09-07",
+  "stage2_filename": "POST_PROTOCOL_TARGET_VALUES_2026-09-07.zip",
+  "stage2_sha256": "94e648dfa9ec9b9cd16a6eaea067f1d823e7d74eb128cc27cfc6de473081e2df",
+  "stage3_sha256": "72fff8d5fe2c1785018915bf1c567d58b20184d71d5122e2fdebb001d344d30a",
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+  "signature_sha256": "64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d",
+  "index_profile": "P0",
+  "targets": {
+    "GSE27262": "GPL570",
+    "GSE32863": "GPL6884"
+  },
+  "target_bootstrap": {
+    "replicates": 2000,
+    "seed_base": 20260915,
+    "substream": "SeedSequence([seed_base,dataset_numeric])"
+  },
+  "B": {
+    "seed": 20260916,
+    "t": [
+      0,
+      0.25,
+      0.5,
+      1,
+      2
+    ]
+  },
+  "C": {
+    "seed": 20260917,
+    "dose": [
+      0,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "replicates_nonzero": 20
+  },
+  "D": {
+    "dose": [
+      0,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "conditional_null": {
+    "seed": 20260918,
+    "replicates": 999,
+    "acceptable_upper95": 0.1
+  },
+  "stage3_labels_must_remain_sealed": true,
+  "colorectal_must_remain_sealed": true
+}
