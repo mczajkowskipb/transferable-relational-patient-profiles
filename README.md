@@ -1,5 +1,7 @@
 # Transferable Relational Patient Profiles
 
+> **Current-design notice (2026-09-07).** The certificate-oriented grant narrative and primary lung ARI gate below are legacy material. The current intended programme is **LEARN → TRUST → TRANSFER → MAP THE LIMITS**, with structural retention as the primary external endpoint, lung as a preliminary technical anchor after a new protocol freeze, and colorectal as the future principal confirmatory family. The new pilot has **not run** and target reclassification/unsealing has **not occurred in this audit**. See [pre-pilot audit](docs/preliminary/AUDIT_2026_09_07.md) and [protocol design draft](docs/preliminary/STRUCTURAL_RETENTION_PILOT_V1_DRAFT.md). Historical evidence and the old freeze remain unchanged.
+
 **From cohort-specific omics patterns to frozen, executable and scientifically testable patient-group definitions.**
 
 This is the clean computational/scientific repository for the SONATA BIS research programme:

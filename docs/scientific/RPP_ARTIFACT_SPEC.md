@@ -1,3 +1,5 @@
+> **Legacy document notice — 2026-09-07.** Retained for provenance. This file predates the current structural-retention grant design and must not be treated as its current protocol. See [pre-pilot audit](../preliminary/AUDIT_2026_09_07.md). The independent-signature pilot is not implemented or frozen yet.
+
 # RPPArtifact/v1 - executable scientific-object specification
 
 The grant claim that an RPP is a reusable scientific object is represented in code by `RelationalPatientProfileArtifact/v1`.

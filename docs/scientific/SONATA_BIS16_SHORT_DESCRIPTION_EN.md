@@ -1,3 +1,5 @@
+> **Legacy document notice — 2026-09-07.** Retained for provenance. This file predates the current structural-retention grant design and must not be treated as its current protocol. See [pre-pilot audit](../preliminary/AUDIT_2026_09_07.md). The independent-signature pilot is not implemented or frozen yet.
+
 # From Cohort-Specific Omics Patterns to Transferable Relational Patient Profiles
 
 ## 1. Research goal, problem, questions and hypotheses

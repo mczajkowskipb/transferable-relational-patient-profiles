@@ -1,3 +1,5 @@
+> **Scope notice — 2026-09-07.** This is retained conditional-robustness theory. RTC/RTR is optional infrastructure, not the primary endpoint of the current structural-retention pilot.
+
 # 20. RELATIONAL TRANSPORTABILITY CERTIFICATE - FORMAL CORE v2
 
 ## Purpose

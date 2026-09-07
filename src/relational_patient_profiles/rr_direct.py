@@ -81,17 +81,21 @@ def _initial_labels(B: np.ndarray, k: int) -> np.ndarray:
     return np.argmin(D, axis=1).astype(int)
 
 
-def _build_prototypes(B, labels, pairs, feature_ids, k, max_rules, min_support, min_contrast):
+def _build_prototypes(B, labels, pairs, feature_ids, k, max_rules, min_support, min_contrast, *, reverse_B):
     global_prev = B.mean(axis=0)
+    global_reverse_prev = reverse_B.mean(axis=0)
     result = []
     for c in range(k):
         mask = labels == c
         if mask.sum() == 0:
             raise RuntimeError("empty cluster during prototype update")
         prev = B[mask].mean(axis=0)
-        direction = (prev >= 0.5).astype(np.uint8)
-        support = np.where(direction == 1, prev, 1.0 - prev)
-        other = np.where(direction == 1, global_prev, 1.0 - global_prev)
+        reverse_prev = reverse_B[mask].mean(axis=0)
+        # Strict reverse means x_a < x_b, not the complement x_a <= x_b.
+        # Ties satisfy neither orientation during induction or execution.
+        direction = (prev >= reverse_prev).astype(np.uint8)
+        support = np.where(direction == 1, prev, reverse_prev)
+        other = np.where(direction == 1, global_prev, global_reverse_prev)
         contrast = support - other
         candidates = [j for j in range(B.shape[1]) if support[j] >= min_support and contrast[j] >= min_contrast]
         if not candidates:
@@ -120,9 +124,9 @@ def _score_from_prototypes(X, feature_ids, prototypes):
             available = np.isfinite(xa) & np.isfinite(xb)
             if not np.any(available):
                 continue
-            obs = xa[available] > xb[available]
+            obs = (xa[available] > xb[available]) if direction == 1 else (xa[available] < xb[available])
             weight = max(1e-12, support * max(contrast, 1e-6))
-            numerator[available] += weight * (obs == bool(direction))
+            numerator[available] += weight * obs
             denominator[available] += weight
         valid = denominator > 0
         scores[valid, ci] = numerator[valid] / denominator[valid]
@@ -147,11 +151,12 @@ def fit_rr_direct(X, feature_ids, *, k=2, feature_budget=60, max_pairs=1500, max
     Xs, fids = _feature_subset(X, feature_ids, feature_budget)
     pairs = _pairs(Xs.shape[1], max_pairs)
     B = _binary_relations(Xs, pairs)
+    reverse_B = np.column_stack([(Xs[:, i] < Xs[:, j]).astype(np.uint8) for i, j in pairs])
     labels = _initial_labels(B, k)
     converged = False
     scores = np.zeros((Xs.shape[0], k), dtype=float)
     for it in range(1, max_iter + 1):
-        prototypes = _build_prototypes(B, labels, pairs, fids, k, max_rules, min_support, min_contrast)
+        prototypes = _build_prototypes(B, labels, pairs, fids, k, max_rules, min_support, min_contrast, reverse_B=reverse_B)
         scores = _score_from_prototypes(Xs, fids, prototypes)
         if not np.isfinite(scores).any(axis=1).all():
             raise RuntimeError("prototype scoring failed")
@@ -161,7 +166,7 @@ def fit_rr_direct(X, feature_ids, *, k=2, feature_budget=60, max_pairs=1500, max
             labels = new_labels
             break
         labels = new_labels
-    prototypes = _build_prototypes(B, labels, pairs, fids, k, max_rules, min_support, min_contrast)
+    prototypes = _build_prototypes(B, labels, pairs, fids, k, max_rules, min_support, min_contrast, reverse_B=reverse_B)
     scores = _score_from_prototypes(Xs, fids, prototypes)
     order = np.sort(scores, axis=1)
     margin = order[:, -1] - order[:, -2] if k > 1 else order[:, -1]

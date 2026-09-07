@@ -2,7 +2,12 @@
   "schema": "SonataBis16CurrentRPP/v1",
   "title": "From Cohort-Specific Omics Patterns to Transferable Relational Patient Profiles",
   "base_repository_commit": "95ddbbdb962bc8519d59b148c27e88baf84d45e5",
-  "logic": ["LEARN", "TRUST_CERTIFY", "TRANSFER", "MAP_THE_LIMITS"],
+  "logic": [
+    "LEARN",
+    "TRUST_CERTIFY",
+    "TRANSFER",
+    "MAP_THE_LIMITS"
+  ],
   "scientific_object": "Relational Patient Profile",
   "formal_representation": "sparse executable within-sample relational prototype / partial order",
   "implementation_family": "RR_DIRECT",
@@ -18,9 +23,12 @@
   },
   "prospective_lung": {
     "source": "GSE19804",
-    "targets": ["GSE27262", "GSE32863"],
-    "coverage_min": 0.70,
-    "forced_all_sample_ari_min": 0.50,
+    "targets": [
+      "GSE27262",
+      "GSE32863"
+    ],
+    "coverage_min": 0.7,
+    "forced_all_sample_ari_min": 0.5,
     "both_targets_required": true,
     "failed_target_replacement": false
   },
@@ -29,5 +37,7 @@
     "radius": "Relational Transportability Radius",
     "calibration": "independent SOURCE-CALIBRATION after SOURCE-FIT freeze",
     "claim": "conditional only for declared perturbation classes"
-  }
+  },
+  "_document_status": "HISTORICAL_SUPERSEDED_2026_09_07",
+  "_current_status_path": "../preliminary/CURRENT_STATUS.json"
 }

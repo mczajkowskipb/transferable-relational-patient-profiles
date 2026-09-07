@@ -279,9 +279,15 @@ def artifact_from_rr_direct(
     for p in rr_result.prototypes:
         relations: list[RPPRelation] = []
         for a, b, direction, support, contrast in p.rules:
+            # RR_DIRECT uses binary directions (0 means the reverse relation).
+            # Artifact directions are signed. Accept the historical signed form
+            # as well, but never silently coerce other codes.
+            if direction not in (-1, 0, 1):
+                raise ValueError("RR_DIRECT direction must be 0/1 or -1/+1")
+            signed_direction = 1 if direction == 1 else -1
             weight = max(1e-12, float(support) * max(float(contrast), 1e-6))
             relations.append(RPPRelation(
-                feature_a=str(a), feature_b=str(b), direction=int(direction),
+                feature_a=str(a), feature_b=str(b), direction=signed_direction,
                 weight=weight, within_support=float(support), contrast=float(contrast),
             ))
         protos.append(RPPPrototype(profile_id=f"P{int(p.cluster)}", relations=tuple(relations)))

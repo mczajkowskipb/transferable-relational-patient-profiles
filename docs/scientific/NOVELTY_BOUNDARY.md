@@ -1,3 +1,5 @@
+> **Legacy document notice — 2026-09-07.** Retained for provenance. This file predates the current structural-retention grant design and must not be treated as its current protocol. See [pre-pilot audit](../preliminary/AUDIT_2026_09_07.md). The independent-signature pilot is not implemented or frozen yet.
+
 # 21. NOVELTY MATRIX - REVIEWER DEFENCE
 
 The table is intentionally phrased as a **combination-of-properties gap**, not a claim that every individual component is unprecedented.
