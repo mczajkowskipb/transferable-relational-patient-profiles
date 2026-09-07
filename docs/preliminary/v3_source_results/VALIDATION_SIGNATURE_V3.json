@@ -1,0 +1,70 @@
+{
+  "schema": "ValidationSignatureV3",
+  "source_dataset": "GSE19804",
+  "index_profile": "P0",
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+  "split_sha256": "2396849a9554a854541006c4e12a0663dc9f381642669e83ac46251d8bc62756",
+  "relations": [
+    {
+      "feature_a": "177",
+      "feature_b": "9245",
+      "direction": "<",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "55273",
+      "feature_b": "130367",
+      "direction": "<",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "90161",
+      "feature_b": "177",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "130367",
+      "feature_b": "51751",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "3579",
+      "feature_b": "9245",
+      "direction": "<",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "90161",
+      "feature_b": "10203",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "6696",
+      "feature_b": "10203",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "6696",
+      "feature_b": "10894",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "4246",
+      "feature_b": "361",
+      "direction": ">",
+      "weight": 1.0
+    },
+    {
+      "feature_a": "4246",
+      "feature_b": "83657",
+      "direction": ">",
+      "weight": 1.0
+    }
+  ],
+  "sha256": "64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d"
+}

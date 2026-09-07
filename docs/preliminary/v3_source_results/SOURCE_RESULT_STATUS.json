@@ -1,0 +1,13 @@
+{
+  "schema": "V3SourceOutcome/v1",
+  "status": "SOURCE_REFERENCE_PASS",
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+  "signature_sha256": "64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d",
+  "split_sha256": "2396849a9554a854541006c4e12a0663dc9f381642669e83ac46251d8bc62756",
+  "selected_signature_relations": 10,
+  "C_source": 0.6053475935828878,
+  "source_reference_lower95": 0.4207264957264959,
+  "source_reference_adequate": true,
+  "target_values_opened": false,
+  "target_labels_opened": false
+}

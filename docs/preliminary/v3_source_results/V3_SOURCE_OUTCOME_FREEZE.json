@@ -1,0 +1,16 @@
+﻿{
+    "schema":  "V3SourceOutcomeFreeze/v1",
+    "frozen_at":  "2026-09-07T22:13:27.1172457+02:00",
+    "v3_rule_commit":  "6d1bfb70fbb03d6d1000480b0b0926e6ab3cf639",
+    "runner_repair_commit":  "34064b809da11bcaa5b0f0e21b8a495e806ec2eb",
+    "split_commit":  "3996eae8ae09fc247102cf1cadb1881b2b1343cb",
+    "status":  "SOURCE_REFERENCE_PASS",
+    "source_reference_adequate":  true,
+    "artifact_sha256":  "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+    "signature_sha256":  "64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d",
+    "split_sha256":  "2396849a9554a854541006c4e12a0663dc9f381642669e83ac46251d8bc62756",
+    "C_source":  0.6053475935828878,
+    "target_values_opened":  false,
+    "target_labels_opened":  false,
+    "colorectal_opened":  false
+}
