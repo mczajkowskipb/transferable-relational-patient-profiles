@@ -1,0 +1,13 @@
+﻿{
+    "schema":  "V2SourceOutcomeFreeze/v1",
+    "frozen_at":  "2026-09-07T21:52:35.7139079+02:00",
+    "v2_gate_commit":  "f3e3f62a2eaf91a6f284806e0b0cb048ffb6b74e",
+    "status":  "INSUFFICIENT_SOURCE_SIGNATURE",
+    "source_reference_adequate":  false,
+    "target_values_opened":  false,
+    "target_labels_opened":  false,
+    "colorectal_opened":  false,
+    "artifact_sha256":  null,
+    "signature_sha256":  null,
+    "C_source":  null
+}

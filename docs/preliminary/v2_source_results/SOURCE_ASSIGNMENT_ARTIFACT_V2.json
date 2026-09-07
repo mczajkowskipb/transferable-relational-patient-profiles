@@ -1,0 +1,188 @@
+{
+  "schema": "RelationalPatientProfileArtifact/v1",
+  "artifact_id": "GSE19804_RR_DIRECT_V2_K2",
+  "source_dataset": "GSE19804",
+  "feature_namespace": "Entrez Gene ID",
+  "mapping_hash": "c7886188337b40726ad54bea848c3a0e82df646c51ad76b109bc409859af19f3",
+  "preprocessing_hash": "6559fea416a69decb34ab1f6e97e4148d2be699ba90dddd2ecf3bc0326233834",
+  "config_hash": "3a3d3b8065efae8b4e6a5f3c606c9e94a9ba1f0bf467e88edb2123ef718ad02b",
+  "software_commit": "f3e3f62a2eaf91a6f284806e0b0cb048ffb6b74e",
+  "min_score": 0.6,
+  "min_margin": 0.05,
+  "min_executable_coverage": 0.8,
+  "created_prelabel": true,
+  "prototypes": [
+    {
+      "profile_id": "P0",
+      "relations": [
+        {
+          "feature_a": "11197",
+          "feature_b": "563",
+          "direction": "<",
+          "weight": 0.6333333333333333,
+          "within_support": 1.0,
+          "contrast": 0.6333333333333333
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "1356",
+          "direction": "<",
+          "weight": 0.5858333333333333,
+          "within_support": 0.95,
+          "contrast": 0.6166666666666667
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "5567",
+          "direction": "<",
+          "weight": 0.5400000000000001,
+          "within_support": 0.9,
+          "contrast": 0.6000000000000001
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "950",
+          "direction": "<",
+          "weight": 0.5833333333333333,
+          "within_support": 1.0,
+          "contrast": 0.5833333333333333
+        },
+        {
+          "feature_a": "8436",
+          "feature_b": "1356",
+          "direction": "<",
+          "weight": 0.5383333333333333,
+          "within_support": 0.95,
+          "contrast": 0.5666666666666667
+        },
+        {
+          "feature_a": "2266",
+          "feature_b": "11197",
+          "direction": ">",
+          "weight": 0.48166666666666663,
+          "within_support": 0.85,
+          "contrast": 0.5666666666666667
+        },
+        {
+          "feature_a": "1356",
+          "feature_b": "199675",
+          "direction": ">",
+          "weight": 0.49500000000000005,
+          "within_support": 0.9,
+          "contrast": 0.55
+        },
+        {
+          "feature_a": "8547",
+          "feature_b": "1356",
+          "direction": "<",
+          "weight": 0.4800000000000001,
+          "within_support": 0.9,
+          "contrast": 0.5333333333333334
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "6286",
+          "direction": "<",
+          "weight": 0.4800000000000001,
+          "within_support": 0.9,
+          "contrast": 0.5333333333333334
+        },
+        {
+          "feature_a": "8436",
+          "feature_b": "563",
+          "direction": "<",
+          "weight": 0.4800000000000001,
+          "within_support": 0.9,
+          "contrast": 0.5333333333333334
+        }
+      ]
+    },
+    {
+      "profile_id": "P1",
+      "relations": [
+        {
+          "feature_a": "11197",
+          "feature_b": "563",
+          "direction": ">",
+          "weight": 0.3008333333333333,
+          "within_support": 0.95,
+          "contrast": 0.31666666666666665
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "1356",
+          "direction": ">",
+          "weight": 0.30062500000000003,
+          "within_support": 0.975,
+          "contrast": 0.30833333333333335
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "5567",
+          "direction": ">",
+          "weight": 0.30000000000000004,
+          "within_support": 1.0,
+          "contrast": 0.30000000000000004
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "950",
+          "direction": ">",
+          "weight": 0.2552083333333333,
+          "within_support": 0.875,
+          "contrast": 0.29166666666666663
+        },
+        {
+          "feature_a": "2266",
+          "feature_b": "11197",
+          "direction": "<",
+          "weight": 0.2833333333333333,
+          "within_support": 1.0,
+          "contrast": 0.2833333333333333
+        },
+        {
+          "feature_a": "8436",
+          "feature_b": "1356",
+          "direction": ">",
+          "weight": 0.255,
+          "within_support": 0.9,
+          "contrast": 0.2833333333333333
+        },
+        {
+          "feature_a": "1356",
+          "feature_b": "199675",
+          "direction": "<",
+          "weight": 0.254375,
+          "within_support": 0.925,
+          "contrast": 0.275
+        },
+        {
+          "feature_a": "8547",
+          "feature_b": "1356",
+          "direction": ">",
+          "weight": 0.24000000000000005,
+          "within_support": 0.9,
+          "contrast": 0.2666666666666667
+        },
+        {
+          "feature_a": "11197",
+          "feature_b": "6286",
+          "direction": ">",
+          "weight": 0.24000000000000005,
+          "within_support": 0.9,
+          "contrast": 0.2666666666666667
+        },
+        {
+          "feature_a": "8436",
+          "feature_b": "563",
+          "direction": ">",
+          "weight": 0.24000000000000005,
+          "within_support": 0.9,
+          "contrast": 0.2666666666666667
+        }
+      ]
+    }
+  ],
+  "transportability_certificate": null,
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b"
+}

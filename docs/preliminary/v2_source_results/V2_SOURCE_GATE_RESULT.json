@@ -1,0 +1,14 @@
+{
+  "schema": "V2SourceGateResult/v1",
+  "software_commit": "f3e3f62a2eaf91a6f284806e0b0cb048ffb6b74e",
+  "S_observed": 0.5895076868005732,
+  "S_null95": 0.3201601421017719,
+  "empirical_p": 0.005,
+  "v1_q_observed": 0.10186398450696033,
+  "v1_q_null95": 0.02230065407095816,
+  "min_profile_participant_support": 20,
+  "observed_stability_successes": 20,
+  "v2_source_gate_pass": true,
+  "target_values_opened": false,
+  "target_labels_opened": false
+}
