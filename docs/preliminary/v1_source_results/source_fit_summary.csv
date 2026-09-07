@@ -1,0 +1,3 @@
+converged,full_fit_ok,k,min_profile_participant_support_observed,null_fit_failures,passes,profile_participant_support,q_excess,q_null95,q_observed,stability_mean_ari,stability_successes
+True,True,2,20,14,False,"{""0"": 20, ""1"": 30}",0.07956333043600217,0.02230065407095816,0.10186398450696033,0.5895076868005732,20
+True,True,3,7,0,False,"{""0"": 7, ""1"": 29, ""2"": 16}",0.07520480879266755,0.02428312569622515,0.0994879344888927,0.5547811959556336,20

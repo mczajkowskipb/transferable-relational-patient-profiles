@@ -1,0 +1,9 @@
+{
+  "schema": "SourceFitStatusV1",
+  "source": "GSE19804",
+  "software_commit": "e1dce59bbbeda0aeee8f5baf26a0f25cfa930844",
+  "target_values_opened": false,
+  "target_labels_opened": false,
+  "status": "NO_STABLE_STRUCTURE",
+  "source_reference_adequate": false
+}

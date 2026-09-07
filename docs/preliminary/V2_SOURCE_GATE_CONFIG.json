@@ -1,0 +1,23 @@
+{
+  "schema": "V2SourceGateConfig/v1",
+  "date": "2026-09-07",
+  "v1_protocol_commit": "8eb98b22555816dc2771582797e73f068cff062d",
+  "v1_source_implementation_commit": "e1dce59bbbeda0aeee8f5baf26a0f25cfa930844",
+  "candidate_k": [
+    2
+  ],
+  "observed_stability_subsamples": 20,
+  "null_stability_replicates": 199,
+  "null_seed": 20260919,
+  "null_quantile": 0.95,
+  "null_quantile_method": "higher",
+  "empirical_p_max": 0.05,
+  "require_v1_q_gate": true,
+  "require_v1_min_profile_support": 8,
+  "require_all_observed_stability_fits": true,
+  "absolute_stability_floor": null,
+  "all_other_assignment_signature_reference_rules": "inherit unchanged from V1_CONFIG.json and STRUCTURAL_RETENTION_PILOT_V1.md",
+  "target_values_must_remain_sealed": true,
+  "target_labels_must_remain_sealed": true,
+  "colorectal_must_remain_sealed": true
+}
