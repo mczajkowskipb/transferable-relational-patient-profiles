@@ -1,0 +1,15 @@
+{
+  "schema": "V3SplitPreparation/v1",
+  "status": "SPLIT_READY",
+  "signature_n": 12,
+  "reference_n": 18,
+  "signature_index_contributors": 7,
+  "signature_comparator_contributors": 12,
+  "reference_index_contributors": 11,
+  "reference_comparator_contributors": 17,
+  "reference_assigned_participants": 18,
+  "reference_assigned_specimens": 33,
+  "objective_rank_sum": 66,
+  "target_values_opened": false,
+  "target_labels_opened": false
+}
