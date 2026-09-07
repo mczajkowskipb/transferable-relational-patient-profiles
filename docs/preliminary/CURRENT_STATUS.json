@@ -1,33 +1,48 @@
-﻿{
-    "schema":  "StructuralRetentionPreflightStatus/v1",
-    "date":  "2026-09-07",
-    "status":  "V1_PROTOCOL_FROZEN_TARGET_VALUES_STILL_SEALED",
-    "logic":  [
-                  "LEARN",
-                  "TRUST",
-                  "TRANSFER",
-                  "MAP_THE_LIMITS"
-              ],
-    "primary_external_endpoint":  "independent structural retention",
-    "secondary_context":  [
-                              "ARI",
-                              "NMI"
-                          ],
-    "protocol_frozen":  true,
-    "source_input_available":  true,
-    "lung_target_values_opened":  false,
-    "lung_target_labels_opened":  false,
-    "colorectal_data_opened":  false,
-    "target_reclassification_executed":  true,
-    "real_data_pilot_run":  false,
-    "remote_branch_created":  true,
-    "historical_freeze_modified":  false,
-    "historical_evidence_modified":  false,
-    "preflight_tests_passed":  19,
-    "pytest_tests_passed":  19,
-    "blockers":  [
-
-                 ],
-    "next_allowed_stage":  "SOURCE_FIT_THEN_STAGE2_TARGET_VALUES_AFTER_FULL_ARTIFACT_AND_SIGNATURE_FREEZE",
-    "empirical_evidence_rating_after":  null
+{
+  "schema": "StructuralRetentionPilotStatus/v2",
+  "date": "2026-09-07",
+  "status": "FINAL_LUNG_PILOT_FROZEN",
+  "logic": [
+    "LEARN",
+    "TRUST",
+    "TRANSFER",
+    "MAP_THE_LIMITS"
+  ],
+  "primary_external_endpoint": "independent structural retention",
+  "secondary_context": [
+    "ARI",
+    "NMI",
+    "post-hoc mapped accuracy"
+  ],
+  "development_exposed_lung_anchor": true,
+  "source_dataset": "GSE19804",
+  "source_reference_pass": true,
+  "C_source": 0.6053475935828878,
+  "source_reference_one_sided_lower95": 0.4207264957264959,
+  "targets": {
+    "GSE27262": {
+      "structural_decision": "PASS",
+      "C_target": 0.8916666666666665,
+      "R": 1.4729829210836272,
+      "accepted_label_ARI": 0.9199693343555215,
+      "conditional_false_passes": "0/999"
+    },
+    "GSE32863": {
+      "structural_decision": "PASS",
+      "C_target": 0.6146825396825397,
+      "R": 1.0154208031858207,
+      "accepted_label_ARI": 0.5177621224965512,
+      "conditional_false_passes": "0/999"
+    }
+  },
+  "lung_target_values_opened": true,
+  "lung_target_labels_opened": true,
+  "prelabel_decisions_modified_after_labels": false,
+  "colorectal_data_opened": false,
+  "historical_freeze_modified": false,
+  "historical_negative_evidence_retained": true,
+  "final_commit": "f018adef9510344180e768a92e8538dd4740b83b",
+  "final_tag": "preliminary-final-lung-pilot-freeze-2026-09-07",
+  "stage3_tests_passed_before_label_access": 45,
+  "next_scientific_stage": "grant-facing synthesis; retain colorectal as future independent confirmatory family"
 }

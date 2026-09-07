@@ -1,97 +1,175 @@
 # Transferable Relational Patient Profiles
 
-> **Current-design notice (2026-09-07).** The certificate-oriented grant narrative and primary lung ARI gate below are legacy material. The current intended programme is **LEARN → TRUST → TRANSFER → MAP THE LIMITS**, with structural retention as the primary external endpoint, lung as a preliminary technical anchor after a new protocol freeze, and colorectal as the future principal confirmatory family. The new pilot has **not run** and target reclassification/unsealing has **not occurred in this audit**. See [pre-pilot audit](docs/preliminary/AUDIT_2026_09_07.md) and [protocol design draft](docs/preliminary/STRUCTURAL_RETENTION_PILOT_V1_DRAFT.md). Historical evidence and the old freeze remain unchanged.
+**From cohort-specific molecular patterns to frozen, executable and scientifically testable patient profiles.**
 
-**From cohort-specific omics patterns to frozen, executable and scientifically testable patient-group definitions.**
+This repository contains the computational and audit trail for the SONATA BIS research programme:
 
-This is the clean computational/scientific repository for the SONATA BIS research programme:
+**From Cohort-Specific Molecular Patterns to Transportable Relational Patient Profiles**
 
-**From Cohort-Specific Omics Patterns to Transferable Relational Patient Profiles**.
+The current programme is organised as:
 
-> **Can patient-group structure discovered in one omics cohort be encoded as a compact relational patient profile that remains executable, interpretable and scientifically testable under cohort and platform shift without target-guided retraining - and can we determine when such transfer should be rejected?**
+**LEARN → TRUST → TRANSFER → MAP THE LIMITS**
 
-## Scientific object
+A Relational Patient Profile (RPP) is a sparse, executable group-level object defined by within-sample relations such as `gene_A > gene_B`. It is learned in a source cohort, frozen, and then executed on an external cohort or an individual new sample without target-side retraining or reclustering.
 
-A **Relational Patient Profile (RPP)** is a group-level object represented by a sparse executable set of within-sample relations such as `gene_A > gene_B`. The profile is learned during unsupervised discovery, frozen, and then executed on an independent cohort or one new sample without target reclustering.
+## Current status
 
-**RPP scientific object -> sparse executable relational prototype -> RR_DIRECT induction -> frozen execution.**
+The development-exposed lung preliminary pilot is complete and frozen at:
 
-The framework also makes negative outcomes explicit:
-- `NO_STABLE_STRUCTURE` - source data do not justify a reusable group structure;
-- `UNASSIGNED` - a target sample cannot be assigned with sufficient coverage/score/margin;
-- `NOT_CERTIFIABLE` - source calibration is insufficient for a stated transportability certificate.
+`preliminary-final-lung-pilot-freeze-2026-09-07`
 
-## LEARN -> TRUST/CERTIFY -> TRANSFER -> MAP THE LIMITS
+The lung pilot is a **technical/development anchor**, not untouched confirmation. The future colorectal family remains unopened and is reserved for independent confirmatory work.
 
-```text
-Current practice
-Cohort A -> clustering -> A1/A2
-Cohort B -> clustering again -> B1/B2
-                         ? A1 == B1 ?
+### Frozen source evidence
 
-Proposed
-Cohort A -> LEARN RPP -> TRUST + CERTIFY -> FREEZE
-                                            |-> Cohort B
-                                            |-> Cohort C
-                                            |-> one new patient
-                                                ASSIGNED / UNASSIGNED
+- source cohort: **GSE19804**
+- selected frozen structure: **K=2**
+- independent source-reference contrast: **C_source = 0.605**
+- one-sided 95% lower bound: **0.421**
+- frozen validation signature: **10 relations**
+
+### External lung execution
+
+| Target | Structural decision | C_target | R = C_target/C_source | Specimen coverage | Conditional false PASS | Post-freeze accepted ARI |
+|---|---:|---:|---:|---:|---:|---:|
+| GSE27262 | **PASS** | 0.892 | 1.473 | 1.000 | 0/999 | 0.920 |
+| GSE32863 | **PASS** | 0.615 | 1.015 | 0.810 | 0/999 | 0.518 |
+
+For both targets, the exact 95% upper bound on the conditional false-reassurance rate was 0.0037.
+
+Evaluation labels were opened **only after** the complete Stage-2 assignments and structural outputs had been frozen and tagged. The label analysis did not modify any prelabel decision.
+
+![Structural retention overview](docs/preliminary/figures/structural_retention_overview.svg)
+
+## What the pilot supports
+
+The current evidence supports the feasibility of:
+
+- learning a compact source-defined relational assignment artifact;
+- separating assignment from an independent molecular validation signature;
+- executing the artifact without target-guided retraining;
+- explicitly abstaining when assignment support becomes inadequate;
+- measuring structural retention independently of conventional label agreement;
+- testing false reassurance under controlled validation-block randomisation;
+- mapping failure modes under geometry change, validation damage and assignment-core feature loss.
+
+It does **not** establish a universal biological subtype, clinical utility, cohort-agnostic invariance, H2 family-level predictive validity, or independent colorectal confirmation.
+
+## Public data
+
+The repository intentionally does **not** redistribute GEO expression matrices.
+
+All three lung cohorts are publicly available from NCBI GEO:
+
+- GSE19804 — source, GPL570
+- GSE27262 — external target, GPL570
+- GSE32863 — external target, GPL6884
+
+See [`docs/reproducibility/DATA_ACCESS.md`](docs/reproducibility/DATA_ACCESS.md) for stable accession links, direct download paths and the exact preprocessing rule.
+
+A downloader is provided:
+
+```bash
+python scripts/download_public_geo_inputs.py --output-dir data/public_geo
 ```
 
-No target reclustering. No target-guided retraining.
+## Public replay
 
-![RPP framework](docs/scientific/figures/Figure_1_RPP_framework.png)
-
-The intuitive direction is **structural extrapolation** of a frozen scientific group definition beyond its discovery cohort. The formal terminology is cross-cohort transportability, domain generalization, and robustness under distribution shift.
-
-## Relational Transportability Certificate (RTC/RTR)
-
-For an explicitly declared perturbation class, the project asks not only whether transfer succeeds empirically, but how far a frozen assignment can be perturbed before its assignment conditions are no longer guaranteed.
-
-`SOURCE-FIT` learns and freezes the RPP. An independent `SOURCE-CALIBRATION` subset then yields pointwise assignment-preserving radii. Exact one-sided nonparametric tolerance bounds convert these to a profile-level **Relational Transportability Radius (RTR)** at predeclared population coverage/confidence. If calibration is insufficient, the result is `NOT_CERTIFIABLE`.
-
-This certificate is conditional and model-relative. It does not certify arbitrary structural or mixture shift.
-
-## Prospective external validation - do not unseal early
-
-The primary lung module is frozen as:
-- source: **GSE19804**;
-- untouched target 1: **GSE27262**;
-- untouched target 2: **GSE32863**.
-
-One unchanged source artifact must be executed on both targets. The primary gate requires **executable coverage >= 0.70 and forced all-sample ARI >= 0.50 on both targets**. A failed target cannot be replaced after unsealing.
-
-See `docs/prospective/EXTERNAL_VALIDATION_FREEZE_v2.md`.
-
-## Preliminary evidence
-
-The authoritative historical pilot remains in the archived/original repository:
-`mczajkowskipb/omics-representation-audit-pilot`.
-
-Pilot v2 remains **STOP (4/5)**. Negative evidence is retained. See `docs/evidence/PILOT_V2_EVIDENCE_SNAPSHOT.md` and `docs/evidence/PROVENANCE.md`.
-
-## Repository layout
-
-- `src/relational_patient_profiles/rr_direct.py` - deterministic direct sparse relational prototype induction;
-- `src/relational_patient_profiles/artifact.py` - versioned executable `RelationalPatientProfileArtifact/v1`;
-- `src/relational_patient_profiles/transportability.py` - RTC/RTR and distribution-free source calibration;
-- `schemas/` - machine-readable artifact/certificate schemas;
-- `docs/scientific/` - current grant-facing scientific formulation;
-- `docs/prospective/` - frozen future target protocol;
-- `docs/evidence/` - compact evidence/provenance boundary;
-- `tests/` - unit tests independent of target outcomes.
-
-## Verify
+After installing the package and downloading the public GEO inputs, the final frozen artifact/signature can be replayed directly from the public Series Matrix files:
 
 ```bash
 python -m venv .venv
-.venv/bin/python -m pip install -U pip
-.venv/bin/python -m pip install -e '.[test]'
-.venv/bin/python -m pytest -q
+python -m pip install -U pip
+python -m pip install -e ".[test]"
+
+python scripts/download_public_geo_inputs.py --output-dir data/public_geo
+python scripts/public_replay_lung_pilot.py \
+    --data-dir data/public_geo \
+    --output-dir public_replay_outputs
+```
+
+The public replay:
+
+1. reconstructs the exact Entrez-ID common feature universe from GPL570/GPL6884 annotations;
+2. rebuilds participant identities from GEO sample metadata;
+3. reconstructs the independent V3 source-reference contrast;
+4. executes the frozen RPP artifact and frozen validation signature on both external targets;
+5. recomputes the structural endpoint;
+6. derives the public tumor/adjacent-normal labels from GEO titles only after execution;
+7. recomputes accepted/forced ARI and NMI;
+8. compares the replayed values with the committed frozen results.
+
+See [`docs/reproducibility/PILOT_REPRODUCIBILITY.md`](docs/reproducibility/PILOT_REPRODUCIBILITY.md).
+
+## Audit trail and intermediate results
+
+The repository retains unsuccessful and superseded stages instead of rewriting history.
+
+Key milestones include:
+
+- V1 protocol freeze and source-side `NO_STABLE_STRUCTURE`;
+- V2 null-calibrated stability gate and `INSUFFICIENT_SOURCE_SIGNATURE`;
+- V3 assignment-stratified holdout freeze and `SOURCE_REFERENCE_PASS`;
+- Stage-2 implementation freeze before target-value access;
+- archived partial Stage-2 output after an implementation failure;
+- complete Stage-2 prelabel result freeze;
+- Stage-3 descriptive label-analysis implementation freeze;
+- final lung pilot freeze.
+
+See:
+
+- [`docs/reproducibility/AUDIT_TRAIL.md`](docs/reproducibility/AUDIT_TRAIL.md)
+- [`docs/preliminary/RESULTS_INDEX.md`](docs/preliminary/RESULTS_INDEX.md)
+
+## Mechanistic controls
+
+### Validation-signature damage
+
+![Validation damage](docs/preliminary/figures/signature_damage_pass_fraction.svg)
+
+### Assignment-core feature loss
+
+![Core dropout](docs/preliminary/figures/core_dropout_assigned_fraction.svg)
+
+### Order-preserving geometry perturbation
+
+![Geometry perturbation](docs/preliminary/figures/geometry_perturbation_ari.svg)
+
+The B perturbation changed conventional value-space geometry while producing zero flips in the frozen assignment/signature relations at every tested dose. C progressively destroyed structural PASS as validation genes were damaged. D caused abstention when assignment-core support was removed.
+
+## Repository layout
+
+- `src/relational_patient_profiles/`
+  - deterministic RR_DIRECT induction;
+  - versioned executable RPP artifact;
+  - transportability/support utilities.
+- `scripts/`
+  - source-side V1/V2/V3 execution;
+  - Stage-2 prelabel target execution;
+  - Stage-3 post-freeze label analysis;
+  - public GEO downloader and public replay;
+  - figure regeneration.
+- `docs/preliminary/`
+  - frozen protocols/configuration;
+  - exact source splits and artifacts;
+  - V1/V2/V3 intermediate outcomes;
+  - Stage-2 prelabel outputs;
+  - Stage-3 descriptive outputs;
+  - final evidence summary.
+- `docs/reproducibility/`
+  - public data acquisition;
+  - replay instructions;
+  - immutable audit chronology.
+- `tests/`
+  - unit and regression tests.
+
+## Verify repository code
+
+```bash
+python -m pytest -q
 python scripts/demo.py
 ```
 
-No target outcome is needed for these checks.
-
 ## Scope boundary
 
-This project does **not** claim universal robustness, cohort-agnostic invariance, formal federated learning, formal privacy guarantees, or clinical decision support. Supervised phenotype classification is secondary evaluation only.
+This project does not claim universal robustness, clinical decision support, privacy guarantees, or a universal biological subtype. Supervised phenotype agreement is secondary evaluation; the primary external endpoint in the current pilot is independent structural retention.
