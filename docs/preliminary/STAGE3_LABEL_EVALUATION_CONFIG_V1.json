@@ -1,0 +1,32 @@
+{
+  "schema": "Stage3LabelEvaluationConfig/v1",
+  "date": "2026-09-07",
+  "required_prelabel_commit": "f633d7cc4ae3c26e794798f3e4ec3194ad7e8aa0",
+  "required_prelabel_tag": "preliminary-stage2-prelabel-freeze-2026-09-07",
+  "stage3_filename": "POST_ASSIGNMENT_LABELS_2026-09-07.zip",
+  "stage3_sha256": "72fff8d5fe2c1785018915bf1c567d58b20184d71d5122e2fdebb001d344d30a",
+  "targets": [
+    "GSE27262",
+    "GSE32863"
+  ],
+  "sample_id_aliases": [
+    "gsm",
+    "sample_id",
+    "sample",
+    "geo_accession"
+  ],
+  "label_aliases": [
+    "evaluation_label",
+    "label",
+    "class",
+    "phenotype",
+    "tissue",
+    "status"
+  ],
+  "accepted_population": "frozen assignment == ASSIGNED",
+  "forced_population": "all specimens with >=1 finite frozen profile score",
+  "nmi_normalization": "arithmetic",
+  "binary_mapped_accuracy": "post-hoc descriptive only",
+  "source_labels_used": false,
+  "may_change_prelabel_decisions": false
+}
