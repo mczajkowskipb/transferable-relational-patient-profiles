@@ -11,7 +11,7 @@ from relational_patient_profiles.artifact import (
     RPPRelation,RPPPrototype,RelationalPatientProfileArtifact,execute_rpp_artifact
 )
 
-EXPECTED_IMPL_TAG="preliminary-stage2-implementation-freeze-2026-09-07"
+EXPECTED_IMPL_TAG="preliminary-stage2-runner-repair-2026-09-07"
 EXPECTED_STAGE2_SHA="94e648dfa9ec9b9cd16a6eaea067f1d823e7d74eb128cc27cfc6de473081e2df"
 EXPECTED_ARTIFACT_SHA="9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b"
 EXPECTED_SIGNATURE_SHA="64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d"
@@ -77,6 +77,31 @@ def safe_extract(zp:Path,dest:Path):
             if not str(target).startswith(str(dest.resolve())): die("unsafe zip member")
         z.extractall(dest)
 
+def verify_extracted_matches_zip(zp:Path,dest:Path):
+    """Verify an already-opened Stage-2 extraction against the exact pre-hashed ZIP."""
+    with zipfile.ZipFile(zp) as z:
+        expected=set()
+        for info in z.infolist():
+            if info.is_dir():
+                continue
+            expected.add(info.filename.replace("\\","/"))
+            p=(dest/info.filename)
+            if not p.is_file():
+                die(f"missing previously extracted Stage-2 member: {info.filename}")
+            h1=hashlib.sha256()
+            with z.open(info,"r") as f:
+                for b in iter(lambda:f.read(1024*1024),b""):
+                    h1.update(b)
+            if h1.hexdigest()!=sha(p):
+                die(f"previously extracted Stage-2 member differs from frozen ZIP: {info.filename}")
+        actual=set()
+        for p in dest.rglob("*"):
+            if p.is_file():
+                actual.add(p.relative_to(dest).as_posix())
+        extra=actual-expected
+        if extra:
+            die("unexpected extra files in Stage-2 extraction: "+str(sorted(extra)[:5]))
+
 def locate_target_matrix(root:Path,dataset:str):
     cand=[]
     for p in root.rglob("*"):
@@ -127,9 +152,18 @@ def exec_fingerprint(execs):
     return [(e.assignment,e.reason,e.best_profile_id,e.best_score,e.margin,
              e.executable_coverage,tuple(e.profile_scores),tuple(e.profile_coverages)) for e in execs]
 
+def participant_sort_key(x):
+    """Canonical deterministic order for opaque participant identifiers.
+
+    Purely numeric source IDs retain the historical numeric ordering used by V3.
+    Non-numeric target IDs are ordered lexically and are never coerced to int.
+    """
+    s=str(x)
+    return (0,int(s),s) if s.isdigit() else (1,s.casefold(),s)
+
 def group_arrays(execs,vs,maprows,gsms,index_profile):
     meta={r["gsm"]:r for r in maprows}
-    pids=sorted({r["participant_id"] for r in maprows},key=lambda x:int(x))
+    pids=sorted({r["participant_id"] for r in maprows},key=participant_sort_key)
     pi={p:i for i,p in enumerate(pids)}
     acc_i={p:[] for p in pids}; acc_c={p:[] for p in pids}
     assigned_spec=0; eval_assigned=0; covered=set()
@@ -301,20 +335,50 @@ def main():
     if sha(zp)!=EXPECTED_STAGE2_SHA: die("Stage-2 ZIP SHA-256 mismatch")
 
     opened=root/"STAGE2_OPENED_TARGET_VALUES"
+    results=root/"STAGE2_PRELABEL_RESULTS"; results.mkdir(exist_ok=True)
+    access_path=results/"STAGE2_ACCESS_RECORD.json"
+
     if opened.exists():
-        # A previous actual Stage-2 access is meaningful; refuse silent overwrite.
-        die(f"Stage-2 extraction directory already exists: {opened}")
-    safe_extract(zp,opened)
+        # Stage 2 was already opened by the first, failed prelabel run. Preserve that
+        # access event; verify bytes rather than deleting/re-extracting the payload.
+        if not access_path.is_file():
+            die("Stage-2 extraction exists but the original access record is missing")
+        prior=json.loads(access_path.read_text(encoding="utf-8-sig"))
+        if prior.get("stage2_sha256")!=EXPECTED_STAGE2_SHA:
+            die("original Stage-2 access record SHA mismatch")
+        if prior.get("stage3_labels_opened") is not False:
+            die("original access record does not keep Stage-3 labels sealed")
+        verify_extracted_matches_zip(zp,opened)
+
+        # The original crash occurred before authentic_transfer / assignment output.
+        # Refuse to overwrite an existing endpoint result silently.
+        endpoint_files=[
+            "authentic_transfer.csv","pilot_summary.csv","conditional_null.csv",
+            "false_reassurance_summary.csv","GSE27262_prelabel_assignments.csv",
+            "GSE32863_prelabel_assignments.csv","STAGE2_PRELABEL_STATUS.json"
+        ]
+        present=[x for x in endpoint_files if (results/x).exists()]
+        if present:
+            die("pre-existing Stage-2 endpoint outputs found; refusing silent rerun: "+str(present))
+
+        resume={"schema":"Stage2ResumeRecord/v1",
+                "resumed_at_utc":datetime.now(timezone.utc).isoformat(),
+                "original_access_record":"STAGE2_ACCESS_RECORD.json",
+                "stage2_sha256":EXPECTED_STAGE2_SHA,
+                "repair_commit":head,
+                "reason":"opaque alphanumeric participant identifiers caused int() coercion failure before target endpoint computation",
+                "stage3_labels_opened":False,"colorectal_opened":False}
+        (results/"STAGE2_RESUME_RECORD.json").write_text(json.dumps(resume,indent=2)+"\n")
+    else:
+        safe_extract(zp,opened)
+        access={"schema":"Stage2AccessRecord/v1","opened_at_utc":datetime.now(timezone.utc).isoformat(),
+                "stage2_zip":str(zp),"stage2_sha256":sha(zp),"implementation_commit":head,
+                "stage3_labels_opened":False,"colorectal_opened":False}
+        access_path.write_text(json.dumps(access,indent=2)+"\n")
 
     # Fail if payload unexpectedly contains label-like files.
     bad=[p for p in opened.rglob("*") if p.is_file() and any(x in p.name.lower() for x in ("label","evaluation_label","phenotype"))]
     if bad: die("label-like file found inside Stage-2 payload: "+str(bad[:3]))
-
-    access={"schema":"Stage2AccessRecord/v1","opened_at_utc":datetime.now(timezone.utc).isoformat(),
-            "stage2_zip":str(zp),"stage2_sha256":sha(zp),"implementation_commit":head,
-            "stage3_labels_opened":False,"colorectal_opened":False}
-    results=root/"STAGE2_PRELABEL_RESULTS"; results.mkdir(exist_ok=True)
-    (results/"STAGE2_ACCESS_RECORD.json").write_text(json.dumps(access,indent=2)+"\n")
 
     v1=load_v1(repo)
     cfg=json.loads((repo/"docs/preliminary/V1_CONFIG.json").read_text(encoding="utf-8-sig"))
@@ -403,10 +467,9 @@ def main():
         target_cache[dataset]=(X,gsms,maprows,ex,vs,pids,tinds)
 
         # B
+        # Frozen B specification: initialise PCG64(20260916) independently for
+        # each target in lexical GSM order. No dataset-specific B substream.
         z_rng=np.random.default_rng(20260916)
-        # protocol says fixed draws in lexical GSM order per target; separate draw vector per target
-        # via deterministic dataset discard-free substream below.
-        z_rng=np.random.default_rng(np.random.SeedSequence([20260916,dnum]))
         z=z_rng.standard_normal(len(gsms)); u=z_rng.standard_normal(len(gsms))
         original_states=relation_states(X,genes,all_rel)
         gi={g:i for i,g in enumerate(genes)}
@@ -518,10 +581,10 @@ def main():
              "colorectal_opened":False,"implementation_commit":head,
              "artifact_sha256":art.sha256(),"signature_sha256":sig["sha256"],
              "C_source":Csource,"targets":pilot,
-             "prelabel_manifest_sha256":sha(manifest),
+             "prelabel_manifest_scope":"all result files except STAGE2_PRELABEL_SHA256.csv itself",
              "status":"STAGE2_PRELABEL_COMPLETE"}
     (results/"STAGE2_PRELABEL_STATUS.json").write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n")
-    # rebuild manifest including status
+    # rebuild final manifest including status
     with manifest.open("w",newline="",encoding="utf-8") as f:
         w=csv.writer(f);w.writerow(["filename","bytes","sha256"])
         for p in sorted(results.iterdir()):
