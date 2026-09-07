@@ -1,0 +1,2 @@
+status,reason
+DEFERRED_NOT_RUN,non-gating source diagnostic; cannot rescue target result

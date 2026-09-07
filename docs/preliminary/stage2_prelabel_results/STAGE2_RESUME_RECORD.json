@@ -1,0 +1,10 @@
+{
+  "schema": "Stage2ResumeRecord/v1",
+  "resumed_at_utc": "2026-09-07T20:31:41.526143+00:00",
+  "original_access_record": "STAGE2_ACCESS_RECORD.json",
+  "stage2_sha256": "94e648dfa9ec9b9cd16a6eaea067f1d823e7d74eb128cc27cfc6de473081e2df",
+  "repair_commit": "d712bb07b038a31095146a765a3d7e22b6a0e484",
+  "reason": "resume after archived partial Stage-2 outputs and opaque-ID runner repair; scientific artifact/signature/thresholds unchanged",
+  "stage3_labels_opened": false,
+  "colorectal_opened": false
+}

@@ -1,0 +1,3 @@
+dataset,passes,replicates,false_reassurance,exact95_lower,exact95_upper,calibration_acceptable
+GSE27262,0,999,0.0,0.0,0.0036857628653051647,True
+GSE32863,0,999,0.0,0.0,0.0036857628653051647,True

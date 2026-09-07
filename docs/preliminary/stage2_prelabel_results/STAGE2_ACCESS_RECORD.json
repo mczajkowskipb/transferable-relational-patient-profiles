@@ -1,0 +1,9 @@
+{
+  "schema": "Stage2AccessRecord/v1",
+  "opened_at_utc": "2026-09-07T20:22:42.157863+00:00",
+  "stage2_zip": "F:\\2026\\Sonata\\chat\\v17\\e\\LUNG_PRELIMINARY_INPUTS_PREP_2026-09-07\\POST_PROTOCOL_TARGET_VALUES_2026-09-07.zip",
+  "stage2_sha256": "94e648dfa9ec9b9cd16a6eaea067f1d823e7d74eb128cc27cfc6de473081e2df",
+  "implementation_commit": "8a6a7d789c178a88c35d1b0808d538ccbadf512b",
+  "stage3_labels_opened": false,
+  "colorectal_opened": false
+}

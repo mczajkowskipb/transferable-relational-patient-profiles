@@ -1,0 +1,34 @@
+{
+  "schema": "Stage2PrelabelStatus/v1",
+  "stage2_opened": true,
+  "stage3_labels_opened": false,
+  "colorectal_opened": false,
+  "implementation_commit": "d712bb07b038a31095146a765a3d7e22b6a0e484",
+  "artifact_sha256": "9f3eb50a5b72fcbb4997b180f11cccf51614abcb3edfb551e69ea4d313508a6b",
+  "signature_sha256": "64eb3631d6a25f0fdf0deede0e0c2da17c63fb25d82ee4612aaa8bd12470128d",
+  "C_source": 0.6053475935828878,
+  "targets": [
+    {
+      "dataset": "GSE27262",
+      "authentic_decision": "PASS",
+      "C_target": 0.8916666666666665,
+      "D": 0.5889928698752226,
+      "R": 1.4729829210836272,
+      "false_reassurance": 0.0,
+      "false_reassurance_upper95": 0.0036857628653051647,
+      "calibration_acceptable": true
+    },
+    {
+      "dataset": "GSE32863",
+      "authentic_decision": "PASS",
+      "C_target": 0.6146825396825397,
+      "D": 0.3120087428910958,
+      "R": 1.0154208031858207,
+      "false_reassurance": 0.0,
+      "false_reassurance_upper95": 0.0036857628653051647,
+      "calibration_acceptable": true
+    }
+  ],
+  "prelabel_manifest_scope": "all result files except STAGE2_PRELABEL_SHA256.csv itself",
+  "status": "STAGE2_PRELABEL_COMPLETE"
+}
