@@ -1,0 +1,18 @@
+{
+  "schema": "H2MetadataCapacityFreeze/v1",
+  "freeze_date": "2026-09-08",
+  "purpose": "Pre-outcome capacity screen for SONATA BIS H2 TRUST",
+  "candidate_blocks": 30,
+  "minimum_final_independent_blocks": 20,
+  "minimum_y_ext_success": 8,
+  "minimum_y_ext_nonsuccess": 8,
+  "nominal_source_n_floor": 100,
+  "nominal_target_n_floor": 50,
+  "lung_anchor_excluded": true,
+  "principal_colorectal_h3_excluded": true,
+  "outcomes_inspected": false,
+  "status_semantics": "CAPACITY_SCREENED_NOT_FINAL_ELIGIBLE",
+  "final_dependency_audit_required": true,
+  "csv_sha256": "ea5e6f462d66e5de93d34194c3424d307f33481b2506fdf9dfeefff19c045c85",
+  "audit_md_sha256": "dab8acca6937f6ec03ee10ea74c3feb1b7e191ecef5711e77c9823dbe91a2514"
+}
